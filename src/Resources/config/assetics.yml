@@ -1,0 +1,15 @@
+xgc_assetics:
+
+  bootstrap4_full:
+    - 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'
+    - 'bootstrap4'
+
+  bootstrap4:
+    - 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'
+
+  awesomefont4:
+    - 'https://use.fontawesome.com/b1b8bf6350.js'
+
+  all:
+    - 'bootstrap4_full'
+    - 'awesomefont4'

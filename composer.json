@@ -1,0 +1,58 @@
+{
+  "name": "xgc/php-config",
+  "license": "MIT",
+  "description": "A quick access to php.ini values",
+  "keywords": [
+    "php",
+    "php.ini"
+  ],
+  "authors": [
+    {
+      "email": "xgc1986@gmail.com",
+      "name": "Javier González Cuadrado"
+    }
+  ],
+  "type": "library",
+  "minimum-stability": "stable",
+  "config": {
+    "bin-dir": "bin"
+  },
+  "autoload": {
+    "psr-4": {
+      "Xgc\\AsseticsBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=7.1",
+    "fzaninotto/faker": "^1.7",
+    "twig/twig": "^2.4"
+  },
+  "require-dev": {
+    "bruli/php-git-hooks": "~5.1",
+    "phpunit/phpunit": "^6.2",
+    "matthiasnoback/symfony-dependency-injection-test": "^2.1",
+    "mockery/mockery": "^0.9"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "PhpGitHooks\\Infrastructure\\Composer\\ConfiguratorScript::buildConfig"
+    ],
+    "post-update-cmd": [
+      "PhpGitHooks\\Infrastructure\\Composer\\ConfiguratorScript::buildConfig"
+    ]
+  },
+  "archive": {
+    "exclude": [
+      "!vendor",
+      "tests",
+      "*phpunit.xml",
+      ".travis.yml",
+      "php-git-hooks.yml"
+    ]
+  }
+}

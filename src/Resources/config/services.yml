@@ -1,0 +1,3 @@
+services:
+  AppBundle\Twig\MyTwigExtension:
+          tags: [twig.extension]
