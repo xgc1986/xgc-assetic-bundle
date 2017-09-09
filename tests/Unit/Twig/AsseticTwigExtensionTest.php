@@ -44,20 +44,6 @@ final class AsseticTwigExtensionTest extends AbstractContainerBuilderTestCase
     }
 
     /**
-     * @expectedException \Xgc\AsseticsBundle\Exception\InvalidFormatException
-     */
-    public function testBadFormat()
-    {
-        $this->container->setParameter('xgc.assetic.nodes', [
-            'bad_format' => [
-                'wrong.jpg'
-            ]
-        ]);
-        $extension = new AsseticTwigExtension($this->container);
-        $extension->includeAssetic('bad_format');
-    }
-
-    /**
      * @expectedException \Xgc\AsseticsBundle\Exception\InvalidResourceException
      */
     public function testBadResource()

@@ -7,11 +7,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Twig_Extension;
 use Twig_Function;
-use Xgc\AsseticsBundle\Exception\InvalidFormatException;
 use Xgc\AsseticsBundle\Exception\InvalidResourceException;
 
 /**
  * Class AsseticTwigExtension
+ *
  * @package Xgc\Assetic\Twig
  */
 final class AsseticTwigExtension extends Twig_Extension
@@ -49,7 +49,6 @@ final class AsseticTwigExtension extends Twig_Extension
      *
      * @return string
      * @throws InvalidResourceException
-     * @throws InvalidFormatException
      */
     public function includeAssetic(string $key): string
     {
@@ -60,14 +59,11 @@ final class AsseticTwigExtension extends Twig_Extension
      * @param string $key
      *
      * @return string
-     * @throws InvalidFormatException
      * @throws InvalidResourceException
      */
     private function getCode(string $key): string
     {
-        if (!($this->asseticNodes[$key] ?? false)) {
-            throw new InvalidResourceException($key);
-        }
+        $this->checkResource($key);
 
         $ret = '';
 
@@ -76,17 +72,9 @@ final class AsseticTwigExtension extends Twig_Extension
         foreach ($resources as $resource) {
             $format = $this->getExtension($resource);
 
-            if ($format === null) {
-                $ret .= $this->getCode($resource);
-            } else {
-                if ($format === 'css') {
-                    $ret .= "<link href='$resource'>";
-                } elseif ($format === 'js') {
-                    $ret .= "<script src='$resource'></script>";
-                } else {
-                    throw new InvalidFormatException($key);
-                }
-            }
+            $ret .= $format === null ? $this->getCode($resource) : '';
+            $ret .= $format === 'css' ? "<link href='$resource'>" : '';
+            $ret .= $format === 'js' ? "<script src='$resource'></script>" : '';
         }
 
         return $ret;
@@ -100,12 +88,20 @@ final class AsseticTwigExtension extends Twig_Extension
     private function getExtension(string $file): ?string
     {
         $explodedFile = \explode('.', $file);
-        $format = $explodedFile[\count($explodedFile) - 1];
+        $format       = $explodedFile[\count($explodedFile) - 1];
 
-        if (\count($explodedFile) > 1) {
-            return $format;
+        return (\count($explodedFile) > 1) ? $format : null;
+    }
+
+    /**
+     * @param string $key
+     *
+     * @throws InvalidResourceException
+     */
+    private function checkResource(string $key)
+    {
+        if (!($this->asseticNodes[$key] ?? false)) {
+            throw new InvalidResourceException($key);
         }
-
-        return null;
     }
 }
