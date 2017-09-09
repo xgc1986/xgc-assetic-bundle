@@ -114,7 +114,7 @@ final class AsseticTwigExtension extends Twig_Extension
 
         switch ($format) {
             case 'css':
-                $ret .= "<link href='$resource'>";
+                $ret .= "<link rel='stylesheet' href='$resource'>";
                 break;
             case 'js':
                 $ret .= "<script src='$resource'></script>";

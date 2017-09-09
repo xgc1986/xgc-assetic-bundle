@@ -38,7 +38,7 @@ final class AsseticTwigExtensionTest extends AbstractContainerBuilderTestCase
         self::assertCount(1, $extension->getFunctions());
 
         self::assertSame(
-            "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script><link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>",
+            "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>",
             $extension->includeAssetic('bootstrap4_full')
         );
     }
