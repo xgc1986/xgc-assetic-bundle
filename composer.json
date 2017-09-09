@@ -1,5 +1,5 @@
 {
-  "name": "xgc/php-config",
+  "name": "xgc/assetic-bundle",
   "license": "MIT",
   "description": "A quick access to php.ini values",
   "keywords": [
