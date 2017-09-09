@@ -70,18 +70,7 @@ final class AsseticTwigExtension extends Twig_Extension
         /** @var string[] $resources */
         $resources = $this->asseticNodes[$key];
         foreach ($resources as $resource) {
-            $format = $this->getExtension($resource);
-
-            switch ($format) {
-                case 'css':
-                    $ret .= "<link href='$resource'>";
-                    break;
-                case 'js':
-                    $ret .= "<script src='$resource'></script>";
-                    break;
-                default:
-                    $ret .= $this->getCode($resource);
-            }
+            $ret .= $this->resourceToString($resource);
         }
 
         return $ret;
@@ -110,5 +99,30 @@ final class AsseticTwigExtension extends Twig_Extension
         if (!($this->asseticNodes[$key] ?? false)) {
             throw new InvalidResourceException($key);
         }
+    }
+
+    /**
+     * @param string $resource
+     *
+     * @return string
+     * @throws InvalidResourceException
+     */
+    private function resourceToString(string $resource): string
+    {
+        $format = $this->getExtension($resource);
+        $ret = '';
+
+        switch ($format) {
+            case 'css':
+                $ret .= "<link href='$resource'>";
+                break;
+            case 'js':
+                $ret .= "<script src='$resource'></script>";
+                break;
+            default:
+                $ret .= $this->getCode($resource);
+        }
+
+        return $ret;
     }
 }
