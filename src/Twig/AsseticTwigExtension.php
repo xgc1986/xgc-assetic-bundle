@@ -72,9 +72,16 @@ final class AsseticTwigExtension extends Twig_Extension
         foreach ($resources as $resource) {
             $format = $this->getExtension($resource);
 
-            $ret .= $format === null ? $this->getCode($resource) : '';
-            $ret .= $format === 'css' ? "<link href='$resource'>" : '';
-            $ret .= $format === 'js' ? "<script src='$resource'></script>" : '';
+            switch ($format) {
+                case 'css':
+                    $ret .= "<link href='$resource'>";
+                    break;
+                case 'js':
+                    $ret .= "<script src='$resource'></script>";
+                    break;
+                default:
+                    $ret .= $this->getCode($resource);
+            }
         }
 
         return $ret;
