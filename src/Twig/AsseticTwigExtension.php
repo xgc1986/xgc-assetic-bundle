@@ -40,7 +40,7 @@ final class AsseticTwigExtension extends Twig_Extension
     public function getFunctions(): array
     {
         return [
-            new Twig_Function('xgc_assetic', 'includeAssetic', ['is_safe' => ['html']])
+            new Twig_Function('xgc_assetic', [$this, 'includeAssetic'], ['is_safe' => ['html']])
         ];
     }
 

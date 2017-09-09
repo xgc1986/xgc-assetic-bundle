@@ -1,6 +1,8 @@
 xgc_assetics:
 
   bootstrap4_full:
+    - 'jquery'
+    - 'tether'
     - 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'
     - 'bootstrap4'
 
@@ -9,6 +11,12 @@ xgc_assetics:
 
   awesomefont4:
     - 'https://use.fontawesome.com/b1b8bf6350.js'
+
+  jquery:
+    - 'https://code.jquery.com/jquery-3.2.1.min.js'
+
+  tether:
+    - '//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js'
 
   all:
     - 'bootstrap4_full'

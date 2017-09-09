@@ -1,3 +1,4 @@
 services:
-  AppBundle\Twig\MyTwigExtension:
-          tags: [twig.extension]
+  Xgc\AsseticsBundle\Twig\AsseticTwigExtension:
+    tags: [twig.extension]
+    arguments: ['@service_container']

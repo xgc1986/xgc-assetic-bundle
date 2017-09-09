@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Xgc\AsseticsBundle;
 
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Xgc\AsseticsBundle\DependencyInjection\XgcAsseticsExtension;
 
@@ -13,9 +14,9 @@ use Xgc\AsseticsBundle\DependencyInjection\XgcAsseticsExtension;
 class XgcAsseticsBundle extends Bundle
 {
     /**
-     * @return XgcAsseticsExtension
+     * @return Extension
      */
-    public function getExtension()
+    public function getExtension(): Extension
     {
         $this->extension = $this->extension ?? new XgcAsseticsExtension();
         return $this->extension;

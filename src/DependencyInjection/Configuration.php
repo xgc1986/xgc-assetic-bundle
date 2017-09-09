@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode    = $treeBuilder->root('xgc_assetics');
 
-        $rootNode->prototype('array')->prototype('scalar')->end();
+        $rootNode->useAttributeAsKey('name')->prototype('array')->prototype('scalar')->end();
 
 
         return $treeBuilder;

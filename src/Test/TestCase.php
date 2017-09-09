@@ -9,4 +9,5 @@ namespace Xgc\AsseticsBundle\Test;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
+    use TestCaseTrait;
 }
