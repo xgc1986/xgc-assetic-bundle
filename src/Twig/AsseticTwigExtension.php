@@ -85,8 +85,9 @@ final class AsseticTwigExtension extends Twig_Extension
     {
         $explodedFile = \explode('.', $file);
         $format       = $explodedFile[\count($explodedFile) - 1];
+        $cleanFormat  = \explode('?', $format);
 
-        return (\count($explodedFile) > 1) ? $format : null;
+        return $cleanFormat[0];
     }
 
     /**
