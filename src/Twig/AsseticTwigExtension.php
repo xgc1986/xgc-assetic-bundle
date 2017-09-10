@@ -23,6 +23,11 @@ final class AsseticTwigExtension extends Twig_Extension
     private $asseticNodes;
 
     /**
+     * @var array
+     */
+    private $loaded = [];
+
+    /**
      * AsseticTwigExtension constructor.
      *
      * @param ContainerInterface $container
@@ -52,6 +57,8 @@ final class AsseticTwigExtension extends Twig_Extension
      */
     public function includeAssetic(string $key): string
     {
+        $this->loaded = [];
+
         return $this->getCode($key);
     }
 
@@ -63,9 +70,9 @@ final class AsseticTwigExtension extends Twig_Extension
      */
     private function getCode(string $key): string
     {
-        $this->checkResource($key);
-
         $ret = '';
+
+        $this->checkResource($key);
 
         /** @var string[] $resources */
         $resources = $this->asseticNodes[$key];
@@ -110,8 +117,14 @@ final class AsseticTwigExtension extends Twig_Extension
      */
     private function resourceToString(string $resource): string
     {
+        if ($this->loaded[$resource] ?? false) {
+            return '';
+        }
+
+        $this->loaded[$resource] = true;
+
         $format = $this->getExtension($resource);
-        $ret = '';
+        $ret    = '';
 
         switch ($format) {
             case 'css':

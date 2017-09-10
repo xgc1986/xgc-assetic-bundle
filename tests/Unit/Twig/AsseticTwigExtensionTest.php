@@ -25,7 +25,8 @@ final class AsseticTwigExtensionTest extends AbstractContainerBuilderTestCase
                 'bootstrap4'
             ],
             'bootstrap4'      => [
-                'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'
+                'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css',
+                'bootstrap4'
             ],
             'bad_format' => [
                 'wrong.jpg'
